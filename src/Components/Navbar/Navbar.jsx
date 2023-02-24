@@ -105,6 +105,10 @@ const Navbar = ({ setSelectedCategory, selectedCategory }) => {
             <h4 onClick={handleMovieToggle}>Movies</h4>
             {toggleMovieGenres ? (
               <div className="dropdown-movie">
+                <p onClick={() => handleGenre("NetflixOriginals", true)}>
+                  Netflix Originals
+                </p>
+                <p onClick={() => handleGenre("HBO", true)}>HBO</p>
                 <p onClick={() => handleGenre("TopRated", true)}>Top Rated</p>
                 <p onClick={() => handleGenre("Action", true)}>Action</p>
                 <p onClick={() => handleGenre("Adventure", true)}>Adventure</p>
@@ -124,6 +128,10 @@ const Navbar = ({ setSelectedCategory, selectedCategory }) => {
             <h4 onClick={handleTvToggle}>Tv Show</h4>
             {toggleTVGenres ? (
               <div className="dropdown-tv">
+                <p onClick={() => handleGenre("NetflixOriginals", false)}>
+                  Netflix Originals
+                </p>
+                <p onClick={() => handleGenre("HBO", true)}>HBO</p>
                 <p onClick={() => handleGenre("TVBest", false)}>Best</p>
                 <p onClick={() => handleGenre("TVPopular", false)}>Popular</p>
                 <p onClick={() => handleGenre("TVOnAir", false)}>On Air</p>
@@ -138,4 +146,4 @@ const Navbar = ({ setSelectedCategory, selectedCategory }) => {
   );
 };
 
-export default Navbar
+export default Navbar;

@@ -18,15 +18,6 @@ const Media = ({
   const [page, setPage] = useState(1);
   const [loading, setloading] = useState(true);
 
-  // const getMovies = async () => {
-  //   setloading(true);
-  //   const response = await axios.get(
-  //     MovieGenres[`fetch${selectedCategory}`] + `&page=${page}`
-  //   );
-  //   setloading(false);
-  //   setMovies(response.data.results);
-  // };
-
   const getMovies = async () => {
     setloading(true);
     const response = await axios.get(

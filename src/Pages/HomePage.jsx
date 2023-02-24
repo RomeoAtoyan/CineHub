@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Middle from "../Components/Middle/Middle";
 import Search from "../Components/Search/Search";
-import MovieGenres from "../Components/MovieRequests";
 
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Action");
@@ -25,7 +24,12 @@ const HomePage = () => {
         actors={actors}
         setActors={setActors}
       />
-      <Search actors={actors} setActors={setActors} bannerMovie={bannerMovie} setBannerMovie={setBannerMovie} />
+      <Search
+        actors={actors}
+        setActors={setActors}
+        bannerMovie={bannerMovie}
+        setBannerMovie={setBannerMovie}
+      />
     </div>
   );
 };

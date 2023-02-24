@@ -1,7 +1,8 @@
 export const API_KEY = "83ac8bb4583fd137050ecfe93cac4232";
-const BASE_URL = "https://api.themoviedb.org/3";
 
 const MovieGenres = {
+  fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&with_networks=213`,
+  fetchHBO: `/discover/tv?api_key=${API_KEY}&with_networks=49`,
   fetchCredits: `/credits?api_key=${API_KEY}&language=en-US`,
   fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
   fetchPopular: `/movie/popular?api_key=${API_KEY}&language=en-US`,

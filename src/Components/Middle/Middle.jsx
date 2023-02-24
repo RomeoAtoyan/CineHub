@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Middle.css";
 import Media from "../Media/Media";
-import MovieGenres from "../MovieRequests";
 import Banner from "../Banner/Banner";
 
 const Middle = ({
@@ -16,7 +15,6 @@ const Middle = ({
   return (
     <div className="middle_container">
       <Banner
-        selectedCategory={selectedCategory}
         bannerMovie={bannerMovie}
         setBannerMovie={setBannerMovie}
         actors={actors}

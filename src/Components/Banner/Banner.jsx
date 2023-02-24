@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Banner.css";
 import axios from "../axiosFile";
 import MovieGenres from "../MovieRequests";
 import TVGenres from "../ShowRequests";
-import { useNavigate } from "react-router-dom";
 
 const Banner = ({
   actors,
@@ -17,7 +16,7 @@ const Banner = ({
   const img_Base_Url = "https://image.tmdb.org/t/p/original";
 
   const getBannerMovie = async () => {
-    const response = await axios.get(MovieGenres.fetchPopular);
+    const response = await axios.get(MovieGenres.fetchNetflixOriginals);
     const randomBannerIndex = Math.floor(
       Math.random() * response.data.results.length
     );
