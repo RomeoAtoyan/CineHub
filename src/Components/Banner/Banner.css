@@ -1,0 +1,102 @@
+.movie_detail_container {
+  padding: 50px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.background_image {
+  padding: 25px;
+}
+
+.actors_container {
+  width: 100%;
+  background-color: rgb(19, 19, 19);
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.actor h4 {
+  color: white;
+}
+
+.actor {
+  border-radius: 5px;
+}
+
+.actor img {
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actor img:hover {
+  transform: translateY(-2px);
+}
+
+.actor h5 {
+  color: yellowgreen;
+}
+
+.green,
+.red,
+.orange {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.green {
+  background-color: yellowgreen;
+  color: white;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.orange {
+  background-color: orange;
+  color: white;
+}
+
+.title_rating {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.less_actors {
+  width: max-content;
+  justify-content: unset;
+  gap: 20px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.alternative_profile {
+  width: 100px;
+  height: 85%;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 40px;
+}
+
+.actors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-actors {
+  display: none;
+}

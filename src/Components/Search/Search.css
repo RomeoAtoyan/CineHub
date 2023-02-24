@@ -1,0 +1,116 @@
+.search_container {
+  width: 15%;
+  height: 90vh;
+  padding: 20px 0;
+}
+
+.search_input {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_input i {
+  background-color: white;
+  height: 100%;
+  padding: 7px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  cursor: pointer;
+}
+
+.search_input input {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border: none;
+  outline: none;
+  height: 30px;
+  padding-left: 5px;
+}
+
+.search_results {
+  height: 100%;
+  padding-top: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.search_result img {
+  border-radius:3px ;
+  width: 30%;
+}
+
+.search_results::-webkit-scrollbar {
+  padding-top: 10px;
+  width: 7px;
+}
+
+.search_results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search_results::-webkit-scrollbar-thumb {
+  background: rgb(160, 196, 89);
+}
+
+.search_results::-webkit-scrollbar-thumb:hover {
+  background: yellowgreen;
+}
+
+.search_results img:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.search_result {
+  width: 90%;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 5px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+  font-size: 9px;
+}
+
+.search_result h2 {
+  width: 40%;
+}
+
+.search_result span {
+  width: 20%;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.img_skeleton {
+  width: 30%;
+  height: 110px;
+  object-fit: contain;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 50px;
+  font-family: "Press Start 2P", cursive;
+  border-radius: 5px;
+}
+
+.empty {
+  display: none;
+}
+
+.gray {
+  display: none;
+}
