@@ -95,19 +95,137 @@
     padding-top: 10px;
     height: 3px;
   }
-  
+
   .actors_container::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   .actors_container::-webkit-scrollbar-thumb {
     background: rgb(160, 196, 89);
   }
-  
+
   .actors_container::-webkit-scrollbar-thumb:hover {
     background: yellowgreen;
   }
-  
+
+  .actors_container img:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
+
+  .movie_container {
+    width: 100%;
+    height: max-content;
+    padding: 0 !important;
+  }
+
+  .movie_container h1 {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .movie {
+    height: max-content !important;
+  }
+
+  .movie img {
+    object-fit: contain;
+    width: 130px;
+  }
+
+  .pages {
+    margin: 0 auto !important;
+    padding: 3px !important ;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1180px) {
+  .middle_container {
+    width: 100%;
+    height: max-content;
+  }
+
+  .movie_detail_container {
+    width: 100% !important;
+    margin: 0 0 0 0 !important;
+    padding: 0 !important;
+  }
+
+  .background_image {
+    background-size: contain;
+    background-position: center;
+    border-radius: 0 !important;
+  }
+
+  .background_image img {
+    width: 200px;
+  }
+
+  .title_rating {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .title_rating h1 {
+    width: 100%;
+  }
+
+  .director {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .overview {
+    text-align: center;
+    font-size: medium;
+    padding: 10px;
+  }
+
+  .actors_container {
+    width: 95% !important;
+    gap: 25px !important;
+    overflow: hidden;
+    overflow-x: scroll;
+    border-radius: 0;
+    margin: 0 auto;
+    border-radius: 0 !important;
+  }
+
+  .actors {
+    width: 100% !important;
+    flex-direction: row-reverse !important;
+    gap: 20px;
+    border-right: 1px solid yellowgreen;
+    padding: 5px;
+  }
+
+  .actors_container img {
+    width: 50px;
+  }
+
+  .actors_container::-webkit-scrollbar {
+    padding-top: 10px;
+    height: 3px;
+  }
+
+  .actors_container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .actors_container::-webkit-scrollbar-thumb {
+    background: rgb(160, 196, 89);
+  }
+
+  .actors_container::-webkit-scrollbar-thumb:hover {
+    background: yellowgreen;
+  }
+
   .actors_container img:hover {
     transform: translateY(-10px);
     cursor: pointer;

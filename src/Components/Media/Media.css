@@ -18,7 +18,7 @@
 
 .movie::-webkit-scrollbar {
   padding-top: 10px;
-  height: 3px;
+  height: 7px;
 }
 
 .movie::-webkit-scrollbar-track {
