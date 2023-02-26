@@ -3,6 +3,7 @@ import "./Banner.css";
 import axios from "../axiosFile";
 import MovieGenres from "../MovieRequests";
 import TVGenres from "../ShowRequests";
+import moment from "moment";
 
 const Banner = ({
   actors,
@@ -28,15 +29,76 @@ const Banner = ({
     let response;
     if (bannerMovie.first_air_date) {
       response = await axios.get(`tv/${mediaId}${TVGenres.fetchTVCredits}`);
-      setDirector(response.data.crew.find(dir => dir.known_for_department === "Directing" || dir.job === "Directing"));
+      setDirector(
+        response.data.crew.find(
+          (dir) =>
+            dir.known_for_department === "Directing" || dir.job === "Directing"
+        )
+      );
       setActors(response?.data?.cast);
     } else if (bannerMovie.release_date) {
       response = await axios.get(`movie/${mediaId}${MovieGenres.fetchCredits}`);
-      setDirector(response.data.crew.find(dir => dir.known_for_department === "Directing" || dir.job === "Directing"));
+      setDirector(
+        response.data.crew.find(
+          (dir) =>
+            dir.known_for_department === "Directing" || dir.job === "Directing"
+        )
+      );
       setActors(response.data.cast);
     }
   };
 
+  const comingSoon =
+    bannerMovie?.vote_average === 0 && bannerMovie?.vote_count === 0
+      ? "no_rating"
+      : "";
+
+  const movieTitle = bannerMovie?.title
+    ? bannerMovie?.title
+    : bannerMovie?.original_name;
+  const noRating =
+    bannerMovie?.vote_average === 0 && bannerMovie?.vote_count === 0 ? (
+      <h1 className="coming_soon">
+        {moment(bannerMovie?.release_date).format("D MMMM YYYY")}
+      </h1>
+    ) : (
+      ""
+    );
+  const movieRating = Math.round(bannerMovie?.vote_average * 10) / 10;
+  const lessActors = actors?.length < 6 ? "less_actors" : "";
+  const directorName = director?.name ? (
+    <h4 className="director" style={{ color: "yellowgreen" }}>
+      Directed By : <span style={{ color: "white" }}>{director?.name}</span>
+    </h4>
+  ) : (
+    ""
+  );
+  const actorSection = actors?.slice(0, 6).map((actor) => (
+    <div className={`${actor ? "actors" : "no-actors"}`} key={actor.id}>
+      <h5 style={{ color: "yellowgreen" }}>{actor?.character}</h5>
+      <h4 style={{ color: "white" }}>{actor?.name}</h4>
+      {actor?.profile_path ? (
+        <img
+          width={"100px"}
+          src={`${img_Base_Url}${actor?.profile_path}`}
+          alt=""
+          style={{ borderRadius: "5px", cursor: "pointer" }}
+        />
+      ) : (
+        <div className="alternative_profile">?</div>
+      )}
+    </div>
+  ));
+
+  const releaseDates = () => {
+    if (bannerMovie?.release_date) {
+      return new Date(bannerMovie?.release_date).getFullYear();
+    } else if (bannerMovie?._date) {
+      return new Date(bannerMovie?._date).getFullYear();
+    } else if (bannerMovie?.first_air_date) {
+      return new Date(bannerMovie?.first_air_date).getFullYear();
+    }
+  };
 
   const getRating = (vote) => {
     if (typeof vote !== "number") {
@@ -58,7 +120,6 @@ const Banner = ({
     if (bannerMovie) {
       getCredits(bannerMovie?.id);
     }
-
   }, [bannerMovie]);
 
   return (
@@ -80,53 +141,33 @@ const Banner = ({
       </div>
       <br />
       <div className="title_rating">
-        <h1 style={{ color: "white" }}>
-          {bannerMovie?.title ? bannerMovie?.title : bannerMovie?.original_name}
-        </h1>
-        <h3 style={{ color: "white" }}>
-          {bannerMovie?.release_date &&
-            new Date(bannerMovie.release_date).getFullYear()}
-          {bannerMovie?._date && new Date(bannerMovie._date).getFullYear()}
-          {bannerMovie?.first_air_date &&
-            new Date(bannerMovie.first_air_date).getFullYear()}
+        <h1 style={{ color: "white" }}>{movieTitle}</h1>
+        <h3
+          className={`${
+            bannerMovie?.vote_average === 0 && bannerMovie?.vote_count === 0
+              ? "no_release_date"
+              : ""
+          }`}
+          style={{ color: "white" }}
+        >
+          {releaseDates()}
         </h3>
-      {bannerMovie?.vote_average === 0 && bannerMovie?.vote_count === 0 ? <h1 style={{color:"white"}}>Coming Soon</h1> : ''}
-        <span className={`${getRating(bannerMovie?.vote_average)} tag`}>
-          {Math.round(bannerMovie?.vote_average * 10) / 10}
+        {noRating}
+        <span
+          className={`${getRating(
+            bannerMovie?.vote_average
+          )} ${comingSoon} tag`}
+        >
+          {movieRating}
         </span>
       </div>
-      {director?.name ? (
-        <h4 className="director" style={{ color: "yellowgreen" }}>
-          Directed By : <span style={{ color: "white" }}>{director?.name}</span>
-        </h4>
-      ) : (
-        ""
-      )}
+      {directorName}
       <br />
-      <p className="overview" style={{ color: "white" }}>{bannerMovie?.overview}</p>
+      <p className="overview" style={{ color: "white" }}>
+        {bannerMovie?.overview}
+      </p>
       <br />
-      <div
-        className={`actors_container ${
-          actors?.length < 6 ? "less_actors" : ""
-        }`}
-      >
-        {actors?.slice(0, 6).map((actor) => (
-          <div className={`${actor ? "actors" : "no-actors"}`} key={actor.id}>
-            <h5 style={{ color: "yellowgreen" }}>{actor?.character}</h5>
-            <h4 style={{ color: "white" }}>{actor?.name}</h4>
-            {actor?.profile_path ? (
-              <img
-                width={"100px"}
-                src={`${img_Base_Url}${actor?.profile_path}`}
-                alt=""
-                style={{ borderRadius: "5px", cursor: "pointer" }}
-              />
-            ) : (
-              <div className="alternative_profile">?</div>
-            )}
-          </div>
-        ))}
-      </div>
+      <div className={`actors_container ${lessActors}`}>{actorSection}</div>
       <br />
     </div>
   );

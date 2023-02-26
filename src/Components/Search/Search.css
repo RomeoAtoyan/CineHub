@@ -36,14 +36,15 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
 .search_result img {
   border-radius:3px ;
-  width: 30%;
+  object-fit: contain;
+  height: 120px;
 }
 
 .search_results::-webkit-scrollbar {

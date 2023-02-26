@@ -100,3 +100,18 @@
 .no-actors {
   display: none;
 }
+
+.no_rating {
+  display: none;
+}
+
+.no_release_date {
+  display: none;
+}
+
+.coming_soon {
+  background-color: yellowgreen;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}

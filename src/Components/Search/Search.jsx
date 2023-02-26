@@ -12,12 +12,6 @@ const Search = ({ setBannerMovie }) => {
 
   const img_base_url = "https://image.tmdb.org/t/p/original";
 
-  // const getSearchedMovie = async () => {
-  //   const movieResponse = await axios.get(
-  //     `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=1`
-  //   );
-  //   setSearchedMovie(movieResponse?.data?.results);
-  // };
 
   const getSearchedMovie = async () => {
     const movieResponse = await axios.get(

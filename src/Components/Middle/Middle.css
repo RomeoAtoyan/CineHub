@@ -53,6 +53,11 @@
     padding: 10px;
   }
 
+  .coming_soon {
+    font-size: 14px;
+    text-align: center;
+  }
+
   .title_rating h1 {
     width: 100%;
   }
@@ -143,6 +148,12 @@
   .middle_container {
     width: 100%;
     height: max-content;
+  }
+
+  .coming_soon {
+    width: 30% !important;
+    font-size: 14px;
+    text-align: center;
   }
 
   .movie_detail_container {
