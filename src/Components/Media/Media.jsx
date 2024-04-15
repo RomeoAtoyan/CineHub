@@ -29,7 +29,6 @@ const Media = ({
     setMovies(response.data.results);
   };
 
-
   const handleMovieClick = async (movie, movieId) => {
     let response;
     setBannerMovie(movie);

@@ -12,9 +12,10 @@ const Banner = ({
   setDirector,
   bannerMovie,
   setBannerMovie,
-  selectedCategory,
 }) => {
   const img_Base_Url = "https://image.tmdb.org/t/p/original";
+  const title_in_url = bannerMovie?.title?.replace(/\s/g, "-");
+  const watchMovieUrl = `https://hdtoday.tv/search/${title_in_url}`
 
   const getBannerMovie = async () => {
     const response = await axios.get(MovieGenres.fetchNetflixOriginals);
@@ -160,6 +161,19 @@ const Banner = ({
         >
           {movieRating}
         </span>
+        <a href={watchMovieUrl}>
+          <button
+            style={{
+              padding: "0.25em 1.5em",
+              background: "yellowgreen",
+              border: "none",
+              outline: "none",
+              borderRadius: "4px",
+            }}
+          >
+            Watch
+          </button>
+        </a>
       </div>
       {directorName}
       <br />
