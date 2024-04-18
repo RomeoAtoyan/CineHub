@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 
 const DropdownMenu = ({ options, handleOptionClick }) => {
@@ -13,16 +13,34 @@ const DropdownMenu = ({ options, handleOptionClick }) => {
   );
 };
 
-const Navbar = ({ setSelectedCategory }) => {
-  const [toggleGenres, setToggleGenres] = useState(false);
+const Navbar = ({ setSelectedCategory, myMovies }) => {
+  const [toggleGenresMovies, setToggleGenresMovies] = useState(false);
+  const [toggleGenresTvShows, setToggleGenresTvShows] = useState(false);
+  const [toggleMyMovies, setToggleMyMovies] = useState(false);
+  const [movieDetails, setMovieDetails] = useState(null); // State to store movie details
 
-  const handleToggleGenres = () => {
-    setToggleGenres(!toggleGenres);
+  const handleToggleGenresMovies = () => {
+    setToggleGenresMovies(!toggleGenresMovies);
+    if (toggleGenresTvShows) {
+      setToggleGenresTvShows(false);
+    }
+  };
+
+  const handleToggleGenresTvShows = () => {
+    setToggleGenresTvShows(!toggleGenresTvShows);
+    if (toggleGenresMovies) {
+      setToggleGenresMovies(false);
+    }
+  };
+
+  const handleToggleMyMovies = () => {
+    setToggleMyMovies(!toggleMyMovies);
   };
 
   const handleGenre = (genre, isMovie) => {
     setSelectedCategory(genre);
-    setToggleGenres(false);
+    setToggleGenresMovies(false);
+    setToggleGenresTvShows(false);
   };
 
   const movieGenres = [
@@ -49,8 +67,8 @@ const Navbar = ({ setSelectedCategory }) => {
         </h1>
         <div className="navbar_categories">
           <div className="navbar_categories_movie">
-            <h4 onClick={handleToggleGenres}>Movies</h4>
-            {toggleGenres && (
+            <h4 onClick={handleToggleGenresMovies}>Movies</h4>
+            {toggleGenresMovies && (
               <DropdownMenu
                 options={movieGenres}
                 handleOptionClick={(option) => handleGenre(option, true)}
@@ -58,13 +76,24 @@ const Navbar = ({ setSelectedCategory }) => {
             )}
           </div>
           <div className="navbar_categories_tv-show">
-            <h4 onClick={handleToggleGenres}>TV Shows</h4>
-            {toggleGenres && (
+            <h4 onClick={handleToggleGenresTvShows}>TV Shows</h4>
+            {toggleGenresTvShows && (
               <DropdownMenu
                 options={tvGenres}
                 handleOptionClick={(option) => handleGenre(option, false)}
               />
             )}
+          </div>
+          <div className="navbar_categories_movie">
+            <h4 onClick={handleToggleMyMovies}>My movies</h4>
+            <div className="dropdown-menu">
+              {toggleMyMovies &&
+                myMovies.map((movie) => (
+                  <p key={movie.Id}>
+                    {movie.Name}
+                  </p>
+                ))}
+            </div>
           </div>
         </div>
       </div>
