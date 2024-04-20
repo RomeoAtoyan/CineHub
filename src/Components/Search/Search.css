@@ -42,7 +42,7 @@
 }
 
 .search_result img {
-  border-radius:3px ;
+  border-radius: 3px;
   object-fit: contain;
   height: 120px;
 }
@@ -115,4 +115,3 @@
 .gray {
   display: none;
 }
-

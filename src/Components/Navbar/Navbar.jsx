@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
+import Search from "../Search/Search";
 
 const DropdownMenu = ({ options, handleOptionClick }) => {
   return (
@@ -60,44 +61,42 @@ const Navbar = ({ setSelectedCategory, myMovies }) => {
   const tvGenres = ["NetflixOriginals", "HBO", "Best", "Popular", "On Air"];
 
   return (
-    <nav className="navbar_container">
-      <div className="navbar">
-        <h1 style={{ cursor: "pointer" }}>
-          Cine<span style={{ color: "yellowgreen" }}>Hub</span>
-        </h1>
-        <div className="navbar_categories">
-          <div className="navbar_categories_movie">
-            <h4 onClick={handleToggleGenresMovies}>Movies</h4>
-            {toggleGenresMovies && (
-              <DropdownMenu
-                options={movieGenres}
-                handleOptionClick={(option) => handleGenre(option, true)}
-              />
-            )}
-          </div>
-          <div className="navbar_categories_tv-show">
-            <h4 onClick={handleToggleGenresTvShows}>TV Shows</h4>
-            {toggleGenresTvShows && (
-              <DropdownMenu
-                options={tvGenres}
-                handleOptionClick={(option) => handleGenre(option, false)}
-              />
-            )}
-          </div>
-          <div className="navbar_categories_movie">
-            <h4 onClick={handleToggleMyMovies}>My movies</h4>
-            <div className="dropdown-menu">
-              {toggleMyMovies &&
-                myMovies.map((movie) => (
-                  <p key={movie.Id}>
-                    {movie.Name}
-                  </p>
-                ))}
+    <>
+      <nav className="navbar_container">
+        <div className="navbar">
+          <h1 style={{ cursor: "pointer" }}>
+            Cine<span style={{ color: "yellowgreen" }}>Hub</span>
+          </h1>
+          <div className="navbar_categories">
+            <div className="navbar_categories_movie">
+              <h4 onClick={handleToggleGenresMovies}>Movies</h4>
+              {toggleGenresMovies && (
+                <DropdownMenu
+                  options={movieGenres}
+                  handleOptionClick={(option) => handleGenre(option, true)}
+                />
+              )}
+            </div>
+            <div className="navbar_categories_tv-show">
+              <h4 onClick={handleToggleGenresTvShows}>TV Shows</h4>
+              {toggleGenresTvShows && (
+                <DropdownMenu
+                  options={tvGenres}
+                  handleOptionClick={(option) => handleGenre(option, false)}
+                />
+              )}
+            </div>
+            <div className="navbar_categories_movie">
+              <h4 onClick={handleToggleMyMovies}>My movies</h4>
+              <div className="dropdown-menu">
+                {toggleMyMovies &&
+                  myMovies.map((movie) => <p key={movie.Id}>{movie.Name}</p>)}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

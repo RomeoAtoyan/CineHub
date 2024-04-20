@@ -75,8 +75,8 @@ const Search = ({ setBannerMovie }) => {
         <i onClick={() => clearInput()} className="fa-solid fa-x"></i>
       </div>
       <div className={`search_results ${emptySearch}`}>
-        {searchedMovie.map((movie) => (
-          <div className="search_result">
+        {searchedMovie.map((movie, index) => (
+          <div key={index} className="search_result">
             {movie?.poster_path ? (
               <img
                 width={"70px"}
