@@ -7,9 +7,7 @@ import { PuffLoader } from "react-spinners";
 
 const Media = ({
   actors,
-  director,
   setActors,
-  setDirectors,
   setBannerMovie,
   selectedCategory,
 }) => {
@@ -30,6 +28,10 @@ const Media = ({
   };
 
   const handleMovieClick = async (movie, movieId) => {
+    window.scrollTo({
+      top:0,
+      behavior:'smooth',
+    })
     let response;
     setBannerMovie(movie);
     if (movie.first_air_date) {
