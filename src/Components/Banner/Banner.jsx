@@ -14,7 +14,7 @@ const Banner = ({
   setBannerMovie,
 }) => {
   const img_Base_Url = "https://image.tmdb.org/t/p/original";
-  const title_in_url = bannerMovie?.title?.replace(/\s/g, "-");
+  const title_in_url = bannerMovie?.title || bannerMovie?.original_name.replace(/\s/g, "-");
   const watchMovieUrl = `https://hdtoday.tv/search/${title_in_url}`
 
   const getBannerMovie = async () => {
@@ -161,6 +161,7 @@ const Banner = ({
         >
           {movieRating}
         </span>
+        <button onClick={() => console.log(title_in_url)}>CLIK</button>
         <a href={watchMovieUrl}>
           <button
             style={{
