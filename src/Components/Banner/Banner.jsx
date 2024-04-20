@@ -161,7 +161,6 @@ const Banner = ({
         >
           {movieRating}
         </span>
-        <button onClick={() => console.log(title_in_url)}>CLIK</button>
         <a href={watchMovieUrl}>
           <button
             style={{
