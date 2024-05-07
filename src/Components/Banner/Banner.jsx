@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Banner.css";
 import axios from "../axiosFile";
 import MovieGenres from "../MovieRequests";
@@ -12,10 +12,15 @@ const Banner = ({
   setDirector,
   bannerMovie,
   setBannerMovie,
+  setDownloads,
+  downloads,
 }) => {
   const img_Base_Url = "https://image.tmdb.org/t/p/original";
-  const title_in_url = bannerMovie?.title || bannerMovie?.original_name.replace(/\s/g, "-");
-  const watchMovieUrl = `https://hdtoday.tv/search/${title_in_url}`
+  const title_in_url =
+    bannerMovie?.title || bannerMovie?.original_name.replace(/\s/g, "-");
+  const watchMovieUrl = `https://hdtoday.tv/search/${title_in_url}`;
+
+  const [containerHeight, setContainerHeight] = useState("100px");
 
   const getBannerMovie = async () => {
     const response = await axios.get(MovieGenres.fetchNetflixOriginals);
@@ -67,6 +72,7 @@ const Banner = ({
     );
   const movieRating = Math.round(bannerMovie?.vote_average * 10) / 10;
   const lessActors = actors?.length < 6 ? "less_actors" : "";
+
   const directorName = director?.name ? (
     <h4 className="director" style={{ color: "yellowgreen" }}>
       Directed By : <span style={{ color: "white" }}>{director?.name}</span>
@@ -74,6 +80,7 @@ const Banner = ({
   ) : (
     ""
   );
+
   const actorSection = actors?.slice(0, 6).map((actor) => (
     <div className={`${actor ? "actors" : "no-actors"}`} key={actor.id}>
       <h5 style={{ color: "yellowgreen" }}>{actor?.character}</h5>
@@ -112,6 +119,34 @@ const Banner = ({
       return "red";
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://movie-tv-music-search-and-download.p.rapidapi.com/search?keywords=${
+        bannerMovie?.title || bannerMovie?.original_name
+      }&quantity=40&page=1`;
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "2238a70dadmshde0dd25d90489a2p17fe94jsn2c74b54dec70",
+          "X-RapidAPI-Host":
+            "movie-tv-music-search-and-download.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json(); // Parse JSON response
+        setDownloads(data.result); // Access the result array
+        console.log(data.result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [bannerMovie?.title, bannerMovie?.original_name]);
 
   useEffect(() => {
     getBannerMovie();
@@ -183,6 +218,47 @@ const Banner = ({
       <br />
       <div className={`actors_container ${lessActors}`}>{actorSection}</div>
       <br />
+      {downloads ? (
+        <div style={{ color: "white" }}>
+          <h1>Downloads ({downloads?.length})</h1>
+          <button
+            onClick={() => setContainerHeight("max-content")}
+            style={{
+              border: "none",
+              outline: "none",
+              padding: "1em 1.5em",
+              background: "yellowgreen",
+              borderRadius: "6px",
+            }}
+          >
+            Show all
+          </button>
+          <ul
+            style={{
+              margin: "2em 0 0 0",
+              height: containerHeight,
+              overflow: "hidden",
+              backgroundColor: "white",
+              borderRadius: "10px",
+              padding: "1em",
+            }}
+          >
+            {downloads?.map((download) => (
+              <a
+                style={{
+                  color: "black",
+                  listStyle: "none",
+                }}
+                href={download?.torrent}
+              >
+                <li>{download?.title}</li>
+              </a>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <h1 style={{ color: "white" }}>No downloads</h1>
+      )}
     </div>
   );
 };

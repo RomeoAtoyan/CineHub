@@ -11,6 +11,8 @@ const Middle = ({
   bannerMovie,
   setBannerMovie,
   selectedCategory,
+  downloads,
+  setDownloads
 }) => {
   return (
     <div className="middle_container">
@@ -21,6 +23,8 @@ const Middle = ({
         setActors={setActors}
         setDirector={setDirector}
         director={director}
+        setDownloads={setDownloads}
+        downloads={downloads}
       />
       <Media
         director={director}

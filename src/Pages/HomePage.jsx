@@ -8,6 +8,7 @@ const HomePage = () => {
   const [bannerMovie, setBannerMovie] = useState(null);
   const [actors, setActors] = useState(null);
   const [director, setDirector] = useState(null);
+  const [downloads, setDownloads] = useState([]);
 
   const [myMovies, setMyMovies] = useState([]);
   const userId = "4066df05eb71488daa4741c2f57bdf4d";
@@ -53,6 +54,8 @@ const HomePage = () => {
         setActors={setActors}
         myMovies={myMovies}
         setMyMovies={setMyMovies}
+        setDownloads={setDownloads}
+        downloads={downloads}
       />
       <Search
         actors={actors}
