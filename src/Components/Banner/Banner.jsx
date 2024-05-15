@@ -18,7 +18,7 @@ const Banner = ({
   const img_Base_Url = "https://image.tmdb.org/t/p/original";
   const title_in_url =
     bannerMovie?.title || bannerMovie?.original_name.replace(/\s/g, "-");
-  const watchMovieUrl = `https://hdtoday.tv/search/${title_in_url}`;
+  const watchMovieUrl = `https://hdtoday.la/search/${title_in_url}`;
 
   const [containerHeight, setContainerHeight] = useState("100px");
 
@@ -227,6 +227,7 @@ const Banner = ({
               border: "none",
               outline: "none",
               padding: "1em 1.5em",
+
               background: "yellowgreen",
               borderRadius: "6px",
             }}
@@ -259,6 +260,7 @@ const Banner = ({
       ) : (
         <h1 style={{ color: "white" }}>No downloads</h1>
       )}
+      <h1 style={{ color: "white" }}>Manual download</h1>
     </div>
   );
 };
